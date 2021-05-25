@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>Utils</Product>
+    <Description>--</Description>
+    <PackageId>Utils</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>-</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>Utils</Company>
+    <Authors>Utils</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IPAddressRange" Version="4.2.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.12.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.12.2" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="5.0.1" />
+  </ItemGroup>
+
+</Project>

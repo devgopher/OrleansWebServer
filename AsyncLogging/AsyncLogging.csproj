@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>AsyncLogging</Product>
+    <Description>An asynchronous logging tool for OSK</Description>
+    <PackageId>AsyncLogging</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>AsyncLogging</Company>
+    <Authors>AsyncLogging</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.9" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Orleans.Core.Abstractions">
+      <HintPath>..\OrleansStatisticsKeeper.Client\bin\Debug\netcoreapp3.1\Orleans.Core.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
