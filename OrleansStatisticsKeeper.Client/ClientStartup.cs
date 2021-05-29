@@ -9,6 +9,7 @@ using Orleans.Networking.Shared;
 using Orleans.Runtime;
 using Orleans.Runtime.Messaging;
 using OrleansStatisticsKeeper.Models.Settings;
+using OWSUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace OrleansStatisticsKeeper.Client
         {
             _attempt = 0;
             _siloSettings.SiloAddresses ??= new List<string>();
-            _siloSettings.SiloAddresses.Add(Utils.IpUtils.IpAddress().ToString());
+            _siloSettings.SiloAddresses.Add(IpUtils.IpAddress().ToString());
 
             var innerClient = new ClientBuilder()
                 .UseStaticClustering(_siloSettings.SiloAddresses.Select(a => new IPEndPoint(IPAddress.Parse(a), _siloSettings.SiloPort)).ToArray())

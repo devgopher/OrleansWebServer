@@ -19,7 +19,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using OrleansWebServer.Grains;
-using Utils;
+using OWSUtils;
 
 namespace OrleansStatisticsKeeper
 {

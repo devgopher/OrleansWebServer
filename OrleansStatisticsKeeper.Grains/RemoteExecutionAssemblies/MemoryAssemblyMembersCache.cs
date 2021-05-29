@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Utils.Client;
+using OWSUtils.Client;
 
 namespace OrleansStatisticsKeeper.Grains.RemoteExecutionAssemblies
 {

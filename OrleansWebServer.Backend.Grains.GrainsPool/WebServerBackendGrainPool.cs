@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Orleans;
 using OrleansStatisticsKeeper.Client;
-using OrleansStatisticsKeeper.Grains.ClientGrainsPool;
+using OrleansStatisticsKeeper.Grains;
 using OrleansWebServer.Backend.Grains.Interfaces;
 
 namespace OrleansWebServer.Backend.Grains.GrainsPool
 {
-    public class WebServerBackendGrainPool<TGrain, TIn, TOut> : GrainsPool<TGrain>, IWebServerBackendGrain<TIn, TOut>, IWebServerBackendGrainPool<TIn, TOut>
+    public class WebServerBackendGrainPool<TGrain, TIn, TOut> : ClientGrainsPool<TGrain>, IWebServerBackendGrain<TIn, TOut>, IWebServerBackendGrainPool<TIn, TOut>
         where TGrain : class, IWebServerBackendGrain<TIn, TOut>, IGrainWithGuidKey
     {
         public WebServerBackendGrainPool(StatisticsClient client, int poolSize) : base(client, poolSize)

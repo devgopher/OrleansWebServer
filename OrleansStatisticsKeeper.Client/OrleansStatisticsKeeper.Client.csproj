@@ -18,13 +18,13 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Orleans.Client" Version="3.4.2" />
     <PackageReference Include="Microsoft.Orleans.Core" Version="3.4.2" />
-    <PackageReference Include="Utils" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AsyncLogging\AsyncLogging.csproj" />
     <ProjectReference Include="..\OrleansStatisticsKeeper.Grains\OrleansStatisticsKeeper.Grains.csproj" />
     <ProjectReference Include="..\OrleansStatisticsKeeper.Models\OrleansStatisticsKeeper.Models.csproj" />
+    <ProjectReference Include="..\Utils\Utils.csproj" />
  </ItemGroup>
 
   <ItemGroup>

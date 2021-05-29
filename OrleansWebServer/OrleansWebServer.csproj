@@ -5,15 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AsyncLogging" Version="1.0.1" />
-    <PackageReference Include="OrleansStatisticsKeeper.Client" Version="1.0.1" />
-    <PackageReference Include="OrleansStatisticsKeeper.Grains" Version="1.0.1" />
-    <PackageReference Include="OrleansStatisticsKeeper.Grains.ClientGrainsPool" Version="1.0.0" />
-    <PackageReference Include="OrleansStatisticsKeeper.Models" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.3" />
-    <PackageReference Include="Utils" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

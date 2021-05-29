@@ -7,8 +7,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Utils.Client;
-using Utils.Crypto;
+using OWSUtils.Client;
+using OWSUtils.Crypto;
 
 namespace OrleansStatisticsKeeper.Grains.RemoteExecutionAssemblies
 {

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Utils.Process;
+using OWSUtils.Process;
 
 namespace OrleansStatisticsKeeper.SiloHost.Utils
 {

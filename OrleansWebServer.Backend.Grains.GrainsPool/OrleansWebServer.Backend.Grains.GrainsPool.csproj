@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrleansStatisticsKeeper.Grains" Version="1.0.1" />
-    <PackageReference Include="OrleansStatisticsKeeper.Grains.ClientGrainsPool" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\OSKStatistics\OSK\OrleansStatisticsKeeper.Grains.ClientGrainsPool\OrleansStatisticsKeeper.Grains.ClientGrainsPool.csproj" />
+    <ProjectReference Include="..\OrleansStatisticsKeeper.Client\OrleansStatisticsKeeper.Client.csproj" />
     <ProjectReference Include="..\OrleansWebServer.Backend.Grains.Interfaces\OrleansWebServer.Backend.Grains.Interfaces.csproj" />
   </ItemGroup>
 

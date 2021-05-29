@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Utils.Crypto
+namespace OWSUtils.Crypto
 {
     public static class HashUtils
     {

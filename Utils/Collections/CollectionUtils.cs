@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utils.Collections
+namespace OWSUtils.Collections
 {
     public static class CollectionUtils
     {

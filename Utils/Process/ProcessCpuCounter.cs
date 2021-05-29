@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Utils.Process
+namespace OWSUtils.Process
 {
     public static class ProcessCpuCounter
     {

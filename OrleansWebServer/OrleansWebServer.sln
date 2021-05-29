@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Gra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Client", "..\OrleansStatisticsKeeper.Client\OrleansStatisticsKeeper.Client.csproj", "{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Grains.ClientGrainsPool", "..\..\OSKStatistics\OSK\OrleansStatisticsKeeper.Grains.ClientGrainsPool\OrleansStatisticsKeeper.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
