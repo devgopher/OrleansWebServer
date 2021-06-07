@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -27,14 +28,23 @@ namespace OrleansStatisticsKeeper.Client.SiloDiscovery
                     Console.WriteLine("\tIP Address is {0}", addr.Address);
                     Console.WriteLine("\tSubnet Mask is {0}", addr.IPv4Mask);
 
-                    if (Probe(addr.Address, port))
-                        result.Add($"{addr.Address}");
+                    var usableAddresses = GetUsableAddresses(addr);
+                    foreach (var usableAddress in usableAddresses)
+                    {
+                        if (Probe(addr.Address, port))
+                            result.Add($"{addr.Address}");
+                    }
+             
                 }
             }
 
             return result;
         }
-        
+
+        public static ICollection<IPAddress> GetUsableAddresses(UnicastIPAddressInformation addr)
+            => IPNetwork.Parse(addr.Address, addr.IPv4Mask).ListIPAddress(FilterEnum.Usable).ToList();
+
+
         public static bool Probe(IPAddress address, int port)
         {
             using var scan = new TcpClient();
