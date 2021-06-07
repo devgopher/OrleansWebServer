@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Orleans;
+using OrleansStatisticsKeeper.Client;
 using OrleansWebServer.Backend.Grains.GrainsPool;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using OrleansWebServer.Backend.Settings;
@@ -20,6 +21,7 @@ namespace OrleansWebServer.Backend.Extensions
             config.GetSection(nameof(WebServerBackendSettings)).Bind(serverConfig);
             services.AddScoped<AsyncLogging.AsyncLogging, AsyncLogging.NLogLogger>();
             services.AddSingleton(serverConfig);
+            services.AddSingleton<StatisticsClient>(); // Нужен синглтон
             services.AddScoped<WebServerBackend>();
         }
 
