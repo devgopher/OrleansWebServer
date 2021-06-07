@@ -40,7 +40,7 @@
     <ProjectReference Include="..\OrleansStatisticsKeeper.Grains\OrleansStatisticsKeeper.Grains.csproj" />
     <ProjectReference Include="..\OrleansStatisticsKeeper.Models\OrleansStatisticsKeeper.Models.csproj" />
     <ProjectReference Include="..\OrleansWebServer.Grains\OrleansWebServer.Grains.csproj" />
-    <ProjectReference Include="..\Utils\Utils.csproj" />
+    <ProjectReference Include="..\Utils\WebServerUtils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

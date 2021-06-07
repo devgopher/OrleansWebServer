@@ -1,5 +1,4 @@
-﻿using AsyncLogging;
-using Orleans;
+﻿using Orleans;
 using OrleansStatisticsKeeper.Client;
 using OrleansWebServer.Backend.Exceptions;
 using OrleansWebServer.Backend.GrainPoolStorage;
@@ -18,8 +17,7 @@ namespace OrleansWebServer.Backend
         private readonly WebServerBackendSettings _settings;
         private readonly AsyncLogging.AsyncLogging _logger;
 
-        public WebServerBackend(WebServerBackendSettings settings,
-            AsyncLogging.AsyncLogging logger ) //: base(settings.SchedulerSettings)
+        public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
             var clt = new ClientStartup();
             _client = clt.StartClientWithRetriesSync();
@@ -63,7 +61,7 @@ namespace OrleansWebServer.Backend
                     $"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : input type is NOT registered!");
 
             if (!(_webExecutivePools[typeof(TIn)] is IWebServerBackendGrainPool<TIn, TOut> pool))
-                throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " +
+                throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
 
             var result = await pool.Execute(request);

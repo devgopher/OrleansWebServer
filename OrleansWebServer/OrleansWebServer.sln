@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Sil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Models", "..\OrleansStatisticsKeeper.Models\OrleansStatisticsKeeper.Models.csproj", "{A50FBA2F-3989-4548-9EED-9436612B649A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "..\Utils\Utils.csproj", "{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebServerUtils", "..\Utils\WebServerUtils.csproj", "{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLogging", "..\AsyncLogging\AsyncLogging.csproj", "{88862825-598E-4FE3-B8C7-B79F902A4051}"
 EndProject
