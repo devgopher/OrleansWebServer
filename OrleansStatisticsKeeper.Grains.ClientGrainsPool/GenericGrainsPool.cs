@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace OrleansStatisticsKeeper.Grains.ClientGrainsPool
 {
-    public class GrainsPool<T> where T : class, IGrainWithGuidKey
+    public class GenericGrainsPool<T> where T : class, IGrainWithGuidKey
     {
         protected readonly ConcurrentBag<T> _grains;
         private readonly StatisticsClient _client;
         private readonly Random rand = new Random(DateTime.Now.Millisecond);
 
-        public GrainsPool(StatisticsClient client, int poolSize)
+        public GenericGrainsPool(StatisticsClient client, int poolSize)
         {
             _grains = new ConcurrentBag<T>();
             _client = client;

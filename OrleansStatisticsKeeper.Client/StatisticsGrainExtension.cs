@@ -1,11 +1,10 @@
-﻿using OrleansStatisticsKeeper.Grains.Interfaces;
+﻿using Newtonsoft.Json;
+using OrleansStatisticsKeeper.Grains.Interfaces;
+using OrleansStatisticsKeeper.Grains.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using OrleansStatisticsKeeper.Grains.Models;
-using OrleansStatisticsKeeper.Models;
 
 
 namespace OrleansStatisticsKeeper.Client

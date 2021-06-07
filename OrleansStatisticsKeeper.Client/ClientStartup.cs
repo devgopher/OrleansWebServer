@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using OrleansStatisticsKeeper.Client.SiloDiscovery;
 
 namespace OrleansStatisticsKeeper.Client
 {
@@ -36,16 +37,24 @@ namespace OrleansStatisticsKeeper.Client
 
         public StatisticsClient StartClientWithRetriesSync()
         {
-            var statisticsClientTask = StartClientWithRetries();
+            var statisticsClientTask = StartClientWithRetries(true);
             statisticsClientTask.Wait();
             return statisticsClientTask.Result;
         }
 
-        public async Task<StatisticsClient> StartClientWithRetries()
+        public async Task<StatisticsClient> StartClientWithRetries(bool siloDiscovery)
         {
             _attempt = 0;
             _siloSettings.SiloAddresses ??= new List<string>();
-            _siloSettings.SiloAddresses.Add(IpUtils.IpAddress().ToString());
+
+            if (siloDiscovery)
+            {
+                var addresses = Discovery.ScanAddresses(_siloSettings.SiloPort);
+                foreach (var address in addresses)
+                    _siloSettings.SiloAddresses.Add(address);
+            }
+            else
+                _siloSettings.SiloAddresses.Add(IpUtils.IpAddress().ToString());
 
             var innerClient = new ClientBuilder()
                 .UseStaticClustering(_siloSettings.SiloAddresses.Select(a => new IPEndPoint(IPAddress.Parse(a), _siloSettings.SiloPort)).ToArray())

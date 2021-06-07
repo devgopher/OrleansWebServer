@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Product>Utils</Product>
+    <Product>WebServerUtils</Product>
     <Description>--</Description>
-    <PackageId>Utils</PackageId>
+    <PackageId>WebServerUtils</PackageId>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReleaseNotes>-</PackageReleaseNotes>
     <Version>1.0.1</Version>
