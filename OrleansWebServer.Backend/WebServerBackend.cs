@@ -19,8 +19,7 @@ namespace OrleansWebServer.Backend
 
         public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
-            var clt = new ClientStartup();
-            _client = clt.StartClientWithRetriesSync(); // это ошибка. Сделать синглтон
+            _client = ClientStartup.Instance.Client; 
             _webExecutivePools = GrainPoolsCache.GetInstance();
             _settings = settings;
             _logger = logger;

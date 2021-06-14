@@ -23,9 +23,14 @@ namespace OrleansStatisticsKeeper.Client
     {
         private readonly SiloSettings _siloSettings = new SiloSettings();
         private readonly OskSettings _oskSettings = new OskSettings();
-        private int _attempt = 0;
+        private static ClientStartup _instance = default;
+        private static StatisticsClient _statisticsClient; 
+        private IClusterClient _clusterClient;
+        int _attempt = 0;
 
-        public ClientStartup()
+        public static ClientStartup Instance => _instance ??= new ClientStartup();
+
+        private ClientStartup()
         {
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
@@ -33,14 +38,13 @@ namespace OrleansStatisticsKeeper.Client
 
             configuration.GetSection(nameof(SiloSettings)).Bind(_siloSettings);
             configuration.GetSection(nameof(OskSettings)).Bind(_oskSettings);
+
+            var task = StartClientWithRetries(false);
+            task.Wait();
+            _statisticsClient = task.Result;
         }
 
-        public StatisticsClient StartClientWithRetriesSync()
-        {
-            var statisticsClientTask = StartClientWithRetries(true);
-            statisticsClientTask.Wait();
-            return statisticsClientTask.Result;
-        }
+        public StatisticsClient Client => _statisticsClient;
 
         public async Task<StatisticsClient> StartClientWithRetries(bool siloDiscovery)
         {
@@ -56,7 +60,7 @@ namespace OrleansStatisticsKeeper.Client
             else
                 _siloSettings.SiloAddresses.Add(IpUtils.IpAddress().ToString());
 
-            var innerClient = new ClientBuilder()
+            _clusterClient = new ClientBuilder()
                 .UseStaticClustering(_siloSettings.SiloAddresses.Select(a => new IPEndPoint(IPAddress.Parse(a), _siloSettings.SiloPort)).ToArray())
                 .Configure<ClusterOptions>(options =>
                 {
@@ -67,10 +71,10 @@ namespace OrleansStatisticsKeeper.Client
                 .AddSimpleMessageStreamProvider("OSKProvider")
                 .Build();
 
-            await innerClient.Connect(RetryFilter);
+            await _clusterClient.Connect(RetryFilter);
             Console.WriteLine("Client successfully connect to silo host");
 
-            return new StatisticsClient(innerClient, new NLogLogger(LogManager.GetCurrentClassLogger()));
+            return new StatisticsClient(_clusterClient, new NLogLogger(LogManager.GetCurrentClassLogger()));
         }
 
         private async Task<bool> RetryFilter(Exception exception)

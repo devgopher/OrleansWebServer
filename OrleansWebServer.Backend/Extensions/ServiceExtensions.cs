@@ -13,15 +13,13 @@ namespace OrleansWebServer.Backend.Extensions
 {
     public static class ServiceExtensions
     {
-        private const int GrainPoolsInitialCapacity = 30;
-
         public static void AddOrleansWebServerForGrains(this IServiceCollection services, IConfiguration config)
         {
             var serverConfig = new WebServerBackendSettings(); 
             config.GetSection(nameof(WebServerBackendSettings)).Bind(serverConfig);
             services.AddScoped<AsyncLogging.AsyncLogging, AsyncLogging.NLogLogger>();
             services.AddSingleton(serverConfig);
-            services.AddSingleton<StatisticsClient>(); // Нужен синглтон
+            //services.AddSingleton<StatisticsClient>(); // Нужен синглтон
             services.AddScoped<WebServerBackend>();
         }
 
@@ -29,14 +27,9 @@ namespace OrleansWebServer.Backend.Extensions
             where TGrain : class, IWebServerBackendGrain<TIn, TOut>, IGrainWithGuidKey
         {
             services.AddOrleansWebServerForGrains(config);
-            //services.AddScoped(typeof(TGrain));
             var provider = services.BuildServiceProvider();
             var webServerBackend = provider.GetRequiredService<WebServerBackend>();
             webServerBackend.RegisterRequest<TGrain, TIn, TOut>();
-        }
-
-        public static void UseOrleansWebServerForGrains(this IApplicationBuilder app)
-        {
         }
     }
 }

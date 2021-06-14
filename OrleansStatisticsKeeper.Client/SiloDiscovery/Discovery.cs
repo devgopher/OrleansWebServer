@@ -35,10 +35,10 @@ namespace OrleansStatisticsKeeper.Client.SiloDiscovery
 
                     var usableAddresses = GetUsableAddresses(addr);
 
-                    Task.WaitAll(usableAddresses.Select(usableAddress => Task.Run(() =>
+                    Task.WaitAny(usableAddresses.Select(addr => Task.Run(() =>
                     {
-                        if (Probe(usableAddress, port)) 
-                            result.Add($"{usableAddress}");
+                        if (Probe(addr, port)) 
+                            result.Add($"{addr}");
                     })).ToArray());
                 }
             }
@@ -55,16 +55,17 @@ namespace OrleansStatisticsKeeper.Client.SiloDiscovery
             using var scan = new TcpClient();
             try
             {
-                scan.SendTimeout = 30;
-                scan.ReceiveTimeout = 50;
-                Console.WriteLine($"\t Probing {address}:{port}...");
+                scan.SendTimeout = 10;
+                scan.ReceiveTimeout = 10;
                 scan.Connect(address, port);
             }
             catch
             {
+                Console.WriteLine($"\t Probing {address}:{port}: false");
                 return false;
             }
 
+            Console.WriteLine($"\t Probing {address}:{port}: true");
             return true;
         }
 
