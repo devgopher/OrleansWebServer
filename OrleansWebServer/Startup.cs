@@ -25,6 +25,7 @@ namespace OrleansWebServer
             // Adds request processing for every type of your requests
             // All you need - is to define your grain type, request type and response type 
             services.AddOrleansWebServerForRequest<WeatherRequest, WeatherResponse, IWeatherGrain>(Configuration);
+            services.AddOrleansWebServerForRequest<IntegralX2Request, IntegralX2Response, IX2IntegrationGrain>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
