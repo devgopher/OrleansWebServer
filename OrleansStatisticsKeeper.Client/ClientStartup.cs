@@ -74,7 +74,7 @@ namespace OrleansStatisticsKeeper.Client
             await _clusterClient.Connect(RetryFilter);
             Console.WriteLine("Client successfully connect to silo host");
 
-            return new StatisticsClient(_clusterClient, new NLogLogger(LogManager.GetCurrentClassLogger()));
+            return new StatisticsClient(_clusterClient, new AsyncLogging.ConsoleLogger());
         }
 
         private async Task<bool> RetryFilter(Exception exception)

@@ -14,7 +14,7 @@ namespace OrleansWebServer.Backend.GrainPoolStorage
 
         private GrainPoolsCache()
         {
-
+            Console.WriteLine($"{nameof(GrainPoolsCache)} constructor...");
         }
 
         public static GrainPoolsCache GetInstance()

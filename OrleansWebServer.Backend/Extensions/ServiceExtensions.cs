@@ -17,10 +17,10 @@ namespace OrleansWebServer.Backend.Extensions
         {
             var serverConfig = new WebServerBackendSettings(); 
             config.GetSection(nameof(WebServerBackendSettings)).Bind(serverConfig);
-            services.AddScoped<AsyncLogging.AsyncLogging, AsyncLogging.NLogLogger>();
+            services.AddSingleton<AsyncLogging.AsyncLogging, AsyncLogging.ConsoleLogger>();
             services.AddSingleton(serverConfig);
             //services.AddSingleton<StatisticsClient>(); // Нужен синглтон
-            services.AddScoped<WebServerBackend>();
+            services.AddSingleton<WebServerBackend>();
         }
 
         public static void AddOrleansWebServerForRequest<TIn, TOut, TGrain>(this IServiceCollection services, IConfiguration config)

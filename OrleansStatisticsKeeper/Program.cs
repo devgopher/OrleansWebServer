@@ -50,7 +50,7 @@ namespace OrleansStatisticsKeeper
                         {
                             services.AddSingleton(oskSettings);
                             services.AddSingleton(siloSettings);
-                            services.AddScoped<IAsyncLogger, NLogLogger>();
+                            services.AddScoped<IAsyncLogger, ConsoleLogger>();
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
                         })
