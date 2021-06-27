@@ -11,7 +11,7 @@ For executing your requests you should make several steps:
     public void ConfigureServices(IServiceCollection services)
     {
         ...
-        services.AddOrleansWebServerForRequest<MyRequest, NyResponse, MyGrain>(Configuration);
+        services.AddOrleansWebServerForRequest<MyRequest, MyResponse, MyGrain>(Configuration);
     }
 ```
 
