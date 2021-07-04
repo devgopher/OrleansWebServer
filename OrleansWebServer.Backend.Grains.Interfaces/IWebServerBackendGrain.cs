@@ -8,6 +8,6 @@ namespace OrleansWebServer.Backend.Grains.Interfaces
     }
     public interface IWebServerBackendGrain<IN, OUT> : IWebServerBackendGrain
     {
-        public Task<OUT> Execute(IN request);
+        public Task<OUT> Execute(IN request, GrainCancellationToken cancellationToken);
     }
 }

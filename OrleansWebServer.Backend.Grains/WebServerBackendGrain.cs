@@ -32,7 +32,7 @@ namespace OrleansWebServer.Backend.Grains
             }
             catch (Exception ex)
             {
-                _logger.Error($"Error binging a configuration for object of type {ConfigName}", ex);
+                _logger.Error($"Error binding a configuration for object of type {ConfigName}", ex);
                 throw new WebServerBackendGrainException(ex.Message, ex);
             }
 
@@ -41,14 +41,14 @@ namespace OrleansWebServer.Backend.Grains
 
         private string ConfigName => GetType().Name;
 
-        public async Task<OUT> Execute(IN request)
+        public async Task<OUT> Execute(IN request, GrainCancellationToken cancellationToken = default)
         {
             _logger.Trace($"Execute() started");
-            var result = await InnerExecute(request);
+            var result = await InnerExecute(request, cancellationToken);
             _logger.Trace($"Execute() finished");
             return result;
         }
 
-        public abstract Task<OUT> InnerExecute(IN request);
+        public abstract Task<OUT> InnerExecute(IN request, GrainCancellationToken cancellationToken = default);
     }
 }

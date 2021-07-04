@@ -6,6 +6,7 @@ using OrleansWebServer.Backend.Grains.GrainsPool;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using OrleansWebServer.Backend.Settings;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OrleansWebServer.Backend
@@ -16,6 +17,7 @@ namespace OrleansWebServer.Backend
         private readonly StatisticsClient _client;
         private readonly WebServerBackendSettings _settings;
         private readonly AsyncLogging.AsyncLogging _logger;
+        private readonly GrainCancellationTokenSource _tokenSource = new GrainCancellationTokenSource();
 
         public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
@@ -51,7 +53,7 @@ namespace OrleansWebServer.Backend
         /// <typeparam name="TOut"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<TOut> SendRequest<TIn, TOut>(TIn request)
+        public async Task<TOut> SendRequest<TIn, TOut>(TIn request, GrainCancellationToken cancellationToken = default)
         {
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
 
@@ -63,7 +65,7 @@ namespace OrleansWebServer.Backend
                 throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
 
-            var result = await pool.Execute(request);
+            var result = cancellationToken == default ? await pool.Execute(request) : await pool.Execute(request, cancellationToken);
 
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} got result");
             return result;

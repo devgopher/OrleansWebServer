@@ -13,8 +13,8 @@ namespace OrleansWebServer.Backend.Grains.GrainsPool
         {
         }
 
-        public async Task<TOut> Execute(TIn request)
-            => await (await GetGrain()).Execute(request);
+        public async Task<TOut> Execute(TIn request, GrainCancellationToken cancellationToken = default)
+            => await (await GetGrain()).Execute(request, cancellationToken);
 
         public Task<V> Execute<T, V>(T request)
         {

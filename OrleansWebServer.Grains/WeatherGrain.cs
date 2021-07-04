@@ -7,7 +7,7 @@ namespace OrleansWebServer.Grains
 {
     public class WeatherGrain : Grain, IWeatherGrain
     {
-        public async Task<WeatherResponse> Execute(WeatherRequest request)
+        public async Task<WeatherResponse> Execute(WeatherRequest request, GrainCancellationToken cancellationToken = default)
         {
             var rng = new Random(DateTime.Now.Millisecond);
             return new WeatherResponse
