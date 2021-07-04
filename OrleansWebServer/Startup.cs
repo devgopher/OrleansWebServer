@@ -21,7 +21,8 @@ namespace OrleansWebServer
         {
             services.AddControllers();
             services.AddSwaggerGen();
-
+            services.AddMvc();
+            
             // Adds request processing for every type of your requests
             // All you need - is to define your grain type, request type and response type 
             services.AddOrleansWebServerForRequest<WeatherRequest, WeatherResponse, IWeatherGrain>(Configuration);

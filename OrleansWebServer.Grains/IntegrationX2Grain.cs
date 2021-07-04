@@ -7,8 +7,9 @@ namespace OrleansWebServer.Grains
 {
     public class IntegrationX2Grain : Grain, IX2IntegrationGrain
     {
-        public async Task<IntegralX2Response> Execute(IntegralX2Request request)
+        public async Task<IntegralX2Response> Execute(IntegralX2Request request, GrainCancellationToken cancellationToken = default)
         {
+            //IsBusy = true;
             var response = new IntegralX2Response();
             double pr1 = 0.0;
             double pr2 = request.Accuracy * 100;
@@ -16,22 +17,40 @@ namespace OrleansWebServer.Grains
 
             while (Math.Abs(pr1-pr2) > request.Accuracy)
             {
+                if (cancellationToken != null)
+                    if (cancellationToken.CancellationToken.IsCancellationRequested)
+                    {
+                        Console.WriteLine("CANCELLED!");
+                        //IsBusy = false;
+                        return response;
+                    }
+
                 var x = request.X0;
                 var y = 0.0;
                 pr1 = pr2;
 
                 while (x < request.X1) {
+                    if (cancellationToken != null)
+                        if (cancellationToken.CancellationToken.IsCancellationRequested)
+                        {
+                            Console.WriteLine("CANCELLED!");
+                            //IsBusy = false;
+                            return response;
+                        }
                     y += x*x*delta;
                     x += delta;
                 }
                 
-                delta = delta / 2.0;
+                delta /= 2.0;
                 pr2 = y;
+                response.Result = pr2;
 
-                Console.WriteLine($"pr2: {pr2}");
+                Console.WriteLine($"approx result: {pr2}");
             }
             response.Result = pr2;
 
+            //IsBusy = false;
+            
             return response;
         }
     }

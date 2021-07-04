@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AsyncLogging\AsyncLogging.csproj" />
     <ProjectReference Include="..\OrleansWebServer.Backend.Grains.Interfaces\OrleansWebServer.Backend.Grains.Interfaces.csproj" />
+    <ProjectReference Include="..\OrleansWebServer.Backend\OrleansWebServer.Backend.csproj" />
   </ItemGroup>
 
 </Project>

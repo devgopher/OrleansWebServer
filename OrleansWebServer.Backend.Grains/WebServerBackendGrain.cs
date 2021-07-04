@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using AsyncLogging;
 using Microsoft.Extensions.Configuration;
 using OrleansWebServer.Backend.Grains.Exceptions;
+using OrleansWebServer.Backend.Settings;
 
 namespace OrleansWebServer.Backend.Grains
 {
-    public abstract class WebServerBackendGrain<TSettings, IN, OUT> : Grain, IWebServerBackendGrain<IN, OUT> 
+    public abstract class WebServerBackendGrain<TSettings, IN, OUT> : IWebServerBackendGrain<IN, OUT> 
         where TSettings : class, new()
     {
         private readonly IConfiguration _configuration;
         private readonly IAsyncLogger _logger;
         private TSettings _innerSettings;
+        public bool IsBusy { get; private set; } = false;
 
         public WebServerBackendGrain(IConfiguration configuration, IAsyncLogger logger)
         {
@@ -43,12 +45,25 @@ namespace OrleansWebServer.Backend.Grains
 
         public async Task<OUT> Execute(IN request, GrainCancellationToken cancellationToken = default)
         {
-            _logger.Trace($"Execute() started");
-            var result = await InnerExecute(request, cancellationToken);
-            _logger.Trace($"Execute() finished");
-            return result;
+            try {
+                IsBusy = true;
+                _logger.Trace($"Execute() started");
+                var result = await InnerExecute(request, cancellationToken);
+                _logger.Trace($"Execute() finished");
+                return result;
+            } finally
+            {
+                IsBusy = true;
+            }
         }
 
         public abstract Task<OUT> InnerExecute(IN request, GrainCancellationToken cancellationToken = default);
+    }
+
+    public abstract class WebServerBackendGrain<IN, OUT> : WebServerBackendGrain<WebServerBackendSettings, IN, OUT>
+    {
+        public WebServerBackendGrain(IConfiguration configuration, IAsyncLogger logger) : base(configuration, logger)
+        {
+        }
     }
 }

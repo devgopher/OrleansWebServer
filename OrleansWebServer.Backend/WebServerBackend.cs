@@ -17,7 +17,6 @@ namespace OrleansWebServer.Backend
         private readonly StatisticsClient _client;
         private readonly WebServerBackendSettings _settings;
         private readonly AsyncLogging.AsyncLogging _logger;
-        private readonly GrainCancellationTokenSource _tokenSource = new GrainCancellationTokenSource();
 
         public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
@@ -53,10 +52,11 @@ namespace OrleansWebServer.Backend
         /// <typeparam name="TOut"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<TOut> SendRequest<TIn, TOut>(TIn request, GrainCancellationToken cancellationToken = default)
+        public async Task<TOut> SendRequest<TIn, TOut>(TIn request, CancellationToken cancellationToken = default)
         {
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
 
+            GrainCancellationTokenSource _tokenSource = new GrainCancellationTokenSource();
             if (!_webExecutivePools.ContainsType(typeof(TIn)))
                 throw new WebServerBackendException(
                     $"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : input type is NOT registered!");
@@ -64,10 +64,16 @@ namespace OrleansWebServer.Backend
             if (!(_webExecutivePools[typeof(TIn)] is IWebServerBackendGrainPool<TIn, TOut> pool))
                 throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
-
-            var result = cancellationToken == default ? await pool.Execute(request) : await pool.Execute(request, cancellationToken);
+            if (cancellationToken != default)
+                cancellationToken.Register(async () =>
+                {
+                    await _tokenSource.Cancel();
+                });
+            
+            var result = await pool.Execute(request, _tokenSource.Token);
 
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} got result");
+            _tokenSource.Dispose();
             return result;
         }
 

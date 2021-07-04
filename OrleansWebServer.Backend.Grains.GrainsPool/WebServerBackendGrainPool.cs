@@ -13,8 +13,16 @@ namespace OrleansWebServer.Backend.Grains.GrainsPool
         {
         }
 
+        public bool IsBusy => throw new System.NotImplementedException();
+
         public async Task<TOut> Execute(TIn request, GrainCancellationToken cancellationToken = default)
-            => await (await GetGrain()).Execute(request, cancellationToken);
+        {
+            var grain = await GetGrain();
+            //while (grain.IsBusy)
+            //    grain = await GetGrain();
+
+            return await grain.Execute(request, cancellationToken);
+        }
 
         public Task<V> Execute<T, V>(T request)
         {

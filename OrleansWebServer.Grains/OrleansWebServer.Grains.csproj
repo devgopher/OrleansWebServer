@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrleansWebServer.Backend.Grains.Interfaces\OrleansWebServer.Backend.Grains.Interfaces.csproj" />
+    <ProjectReference Include="..\OrleansWebServer.Backend.Grains\OrleansWebServer.Backend.Grains.csproj" />
+    <ProjectReference Include="..\OrleansWebServer.Backend\OrleansWebServer.Backend.csproj" />
     <PackageReference Include="Microsoft.Orleans.Core" Version="3.4.2" />
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.4.2" />
     <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="3.4.2">
