@@ -20,6 +20,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using OrleansWebServer.Grains;
 using OWSUtils;
+using System.Runtime.Loader;
 
 namespace OrleansStatisticsKeeper
 {
@@ -96,11 +97,11 @@ namespace OrleansStatisticsKeeper
             if (asmPaths == null) 
                 return asms.ToArray();
             
-            foreach (var asmPath in asmPaths)
+            foreach (var asmPath in asmPaths.Where(path => path.Contains("Grains") && !path.Contains("Interfaces")))
             {
                 try
                 {
-                    var asm = Assembly.LoadFrom(asmPath);
+                    var asm = AssemblyLoadContext.Default.LoadFromAssemblyPath(asmPath);
                     asms.Add(asm);
                     Console.WriteLine($"Loaded assembly: {asmPath}!");
                 }
@@ -115,18 +116,23 @@ namespace OrleansStatisticsKeeper
 
         private static IApplicationPartManagerWithAssemblies AddParts(IApplicationPartManager parts, SiloSettings siloSettings)
         {
-            var sas = typeof(WeatherGrain).Assembly;
             var results = parts
                 .AddApplicationPart(typeof(DataChunk).Assembly)
-                .AddApplicationPart(typeof(WeatherGrain).Assembly)
+                .AddApplicationPart(typeof(IX2IntegrationGrain).Assembly)
                 .WithCodeGeneration();
-            
-           // results.AddApplicationPart(typeof(WeatherGrain).Assembly);
 
-            //var linkedAsms = GetLinkedAssemblies(siloSettings);
-            //foreach (var asm in linkedAsms)
-            //    results.AddApplicationPart(asm).WithCodeGeneration();
 
+            var linkedAsms = GetLinkedAssemblies(siloSettings);
+            foreach (var asm in linkedAsms)
+            { 
+                // TODO: если встречаем 2 библиотеки  с одним и тем же именем, то сортируем в обратонос порядке по дате и версии и используем самую новую
+                try
+                {
+                    results.AddApplicationPart(asm).WithCodeGeneration();
+                } catch (Exception ex) {
+                    Console.WriteLine($"Error loading app part \"{asm.GetName()}\": {ex.Message}");
+                }
+            }
             return results;
         }
     }

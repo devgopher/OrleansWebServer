@@ -12,15 +12,8 @@ namespace OrleansWebServer.Controllers
     public class TestController : ControllerBase
     {
         private readonly WebServerBackend _wg;
-        private readonly GrainCancellationTokenSource source = new GrainCancellationTokenSource();
 
         public TestController(WebServerBackend wg) => _wg = wg;
-
-        [HttpPost("[action]")]
-        public async Task<WeatherResponse> GetWeather(WeatherRequest wr, CancellationToken cancellationToken = default)
-        {
-            return await _wg.SendRequest<WeatherRequest, WeatherResponse>(wr, cancellationToken);
-        }
 
         [HttpPost("[action]")]
         public async Task<IntegralX2Response> GetIntegral(IntegralX2Request wr, CancellationToken cancellationToken)
