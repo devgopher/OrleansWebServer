@@ -1,4 +1,5 @@
 
+using AsyncLogging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,7 @@ namespace OrleansWebServer
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddScoped<IAsyncLogger, NLogLogger>();
             services.AddMvc();
             
             // Adds request processing for every type of your requests

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using OWSUtils.Process;
@@ -8,7 +9,7 @@ namespace OrleansStatisticsKeeper.SiloHost.Utils
 {
     class CpuOptimizer
     {
-        private const int MaxThreadCount = 1000;
+        private const int MaxThreadCount = 100;
         private const int MinThreadCount = 10;
         private static int _currentThreadCount = 50;
 
@@ -22,6 +23,12 @@ namespace OrleansStatisticsKeeper.SiloHost.Utils
 
             using (var cpuCounter = ProcessCpuCounter.GetPerfCounterForProcessId(Process.GetCurrentProcess().Id))
             {
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Console.WriteLine($"CpuOptimizer is working on Windows platform only!");
+                    return;
+                }
+
                 while (/*!cancellationToken.IsCancellationRequested*/true)
                 {
                     var cpuValue = cpuCounter.NextValue();

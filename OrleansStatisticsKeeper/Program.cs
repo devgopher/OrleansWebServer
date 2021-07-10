@@ -51,7 +51,7 @@ namespace OrleansStatisticsKeeper
                         {
                             services.AddSingleton(oskSettings);
                             services.AddSingleton(siloSettings);
-                            services.AddScoped<IAsyncLogger, ConsoleLogger>();
+                            services.AddScoped<IAsyncLogger, NLogLogger>();
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
                         })
@@ -124,8 +124,9 @@ namespace OrleansStatisticsKeeper
 
             var linkedAsms = GetLinkedAssemblies(siloSettings);
             foreach (var asm in linkedAsms)
-            { 
-                // TODO: если встречаем 2 библиотеки  с одним и тем же именем, то сортируем в обратонос порядке по дате и версии и используем самую новую
+            {
+                Console.WriteLine($"Loading app part \"{asm.GetName()}\"");
+                // TODO: если встречаем 2 библиотеки  с одним и тем же именем, то сортируем в обратоном порядке по дате и версии и используем самую новую
                 try
                 {
                     results.AddApplicationPart(asm).WithCodeGeneration();

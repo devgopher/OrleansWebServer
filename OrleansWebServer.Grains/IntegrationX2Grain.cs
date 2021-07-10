@@ -1,3 +1,4 @@
+using AsyncLogging;
 using Orleans;
 using OrleansWebServer.Grains.Models;
 using System;
@@ -7,9 +8,12 @@ namespace OrleansWebServer.Grains
 {
     public class IntegrationX2Grain : Grain, IX2IntegrationGrain
     {
+        private readonly IAsyncLogger _logger;
+        public IntegrationX2Grain(IAsyncLogger logger)
+            => _logger = logger;
+
         public async Task<IntegralX2Response> Execute(IntegralX2Request request, GrainCancellationToken cancellationToken = default)
         {
-            //IsBusy = true;
             var response = new IntegralX2Response();
             double pr1 = 0.0;
             double pr2 = request.Accuracy * 100;
@@ -20,8 +24,7 @@ namespace OrleansWebServer.Grains
                 if (cancellationToken != null)
                     if (cancellationToken.CancellationToken.IsCancellationRequested)
                     {
-                        Console.WriteLine("CANCELLED!");
-                        //IsBusy = false;
+                        _logger.Warn("CANCELLED!");
                         return response;
                     }
 
@@ -33,8 +36,7 @@ namespace OrleansWebServer.Grains
                     if (cancellationToken != null)
                         if (cancellationToken.CancellationToken.IsCancellationRequested)
                         {
-                            Console.WriteLine("CANCELLED!");
-                            //IsBusy = false;
+                            _logger.Warn("CANCELLED!");
                             return response;
                         }
                     y += x*x*delta;
@@ -45,11 +47,9 @@ namespace OrleansWebServer.Grains
                 pr2 = y;
                 response.Result = pr2;
 
-                Console.WriteLine($"approx result: {pr2}");
+                _logger.Info($"Grain: {IdentityString}. Approx result: {pr2}");
             }
             response.Result = pr2;
-
-            //IsBusy = false;
             
             return response;
         }
