@@ -129,16 +129,22 @@ namespace OrleansStatisticsKeeper
                 .AddApplicationPart(typeof(DataChunk).Assembly)
                 .AddApplicationPart(typeof(IX2IntegrationGrain).Assembly)
                 .WithCodeGeneration();
-
-
+            
             var linkedAsms = GetLinkedAssemblies(siloSettings);
             foreach (var asm in linkedAsms)
             {
                 _logger.Info($"Loading app part \"{asm.GetName()}\"");
-                // TODO: если встречаем 2 библиотеки  с одним и тем же именем, то сортируем в обратоном порядке по дате и версии и используем самую новую
                 try
                 {
-                    results.AddApplicationPart(asm).WithCodeGeneration();
+                    if (linkedAsms.Any(asm1 => asm1.GetName().Name == asm.GetName().Name && asm1.GetName().Version != asm.GetName().Version))
+                    {
+                        var existingAsms = linkedAsms.Where(asm1 => asm1.GetName().Name == asm.GetName().Name && asm1.GetName().Version != asm.GetName().Version);
+                        var lastVersionAsm = existingAsms.OrderByDescending(asm1 => asm1.GetName().Version).FirstOrDefault();
+                        if (lastVersionAsm != default)
+                            results.AddApplicationPart(lastVersionAsm).WithCodeGeneration();
+                    } else                    
+                        results.AddApplicationPart(asm).WithCodeGeneration();
+
                 } catch (Exception ex) {
                     _logger.Error($"Error loading app part \"{asm.GetName()}\": {ex.Message}");
                 }
