@@ -26,10 +26,15 @@ namespace OrleansStatisticsKeeper
 {
     public class Program
     {
+        private static IAsyncLogger _logger;
+
         public static Task Main(string[] args)
         {
             var oskSettings = new OskSettings();
             var siloSettings = new SiloSettings();
+            _logger = new NLogLogger();
+
+            _logger.Info("Starting SiloHost...");
 
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
@@ -51,7 +56,7 @@ namespace OrleansStatisticsKeeper
                         {
                             services.AddSingleton(oskSettings);
                             services.AddSingleton(siloSettings);
-                            services.AddScoped<IAsyncLogger, NLogLogger>();
+                            services.AddScoped<IAsyncLogger>(l => _logger);
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
                         })
@@ -78,6 +83,7 @@ namespace OrleansStatisticsKeeper
 
         private static Assembly[] GetLinkedAssemblies(SiloSettings siloSettings)
         {
+            _logger.Info("Adding linked assmeblies for grains ...");
             var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
             var basicDirectory = directoryInfo?.FullName;
             basicDirectory = directoryInfo != null ? directoryInfo.Parent?.Parent?.FullName : basicDirectory;
@@ -103,19 +109,22 @@ namespace OrleansStatisticsKeeper
                 {
                     var asm = AssemblyLoadContext.Default.LoadFromAssemblyPath(asmPath);
                     asms.Add(asm);
-                    Console.WriteLine($"Loaded assembly: {asmPath}!");
+                    _logger.Debug($"Loaded assembly: {asmPath}!");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Can't load assembly: {asmPath}, {ex.Message}!");
+                    _logger.Error($"Can't load assembly: {asmPath}, {ex.Message}!");
                 }
             }
+            _logger.Info("Adding linked assmeblies for grains finished");
 
             return asms.ToArray();
         }
 
         private static IApplicationPartManagerWithAssemblies AddParts(IApplicationPartManager parts, SiloSettings siloSettings)
         {
+            _logger.Info("Adding App Parts...");
+
             var results = parts
                 .AddApplicationPart(typeof(DataChunk).Assembly)
                 .AddApplicationPart(typeof(IX2IntegrationGrain).Assembly)
@@ -125,15 +134,17 @@ namespace OrleansStatisticsKeeper
             var linkedAsms = GetLinkedAssemblies(siloSettings);
             foreach (var asm in linkedAsms)
             {
-                Console.WriteLine($"Loading app part \"{asm.GetName()}\"");
+                _logger.Info($"Loading app part \"{asm.GetName()}\"");
                 // TODO: если встречаем 2 библиотеки  с одним и тем же именем, то сортируем в обратоном порядке по дате и версии и используем самую новую
                 try
                 {
                     results.AddApplicationPart(asm).WithCodeGeneration();
                 } catch (Exception ex) {
-                    Console.WriteLine($"Error loading app part \"{asm.GetName()}\": {ex.Message}");
+                    _logger.Error($"Error loading app part \"{asm.GetName()}\": {ex.Message}");
                 }
             }
+            _logger.Info("App Parts loaded");
+
             return results;
         }
     }
