@@ -32,7 +32,7 @@ namespace OrleansWebServer.Backend.Grains
             }
             catch (Exception ex)
             {
-                _logger.Error($"Error binging a configuration for object of type {ConfigName}", ex);
+                _logger.Error($"Error binding a configuration for object of type {ConfigName}", ex);
                 throw new WebServerBackendGrainException(ex.Message, ex);
             }
 
