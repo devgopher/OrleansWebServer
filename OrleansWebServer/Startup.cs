@@ -1,3 +1,5 @@
+
+using AsyncLogging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,10 +22,12 @@ namespace OrleansWebServer
         {
             services.AddControllers();
             services.AddSwaggerGen();
-
+            services.AddScoped<IAsyncLogger, NLogLogger>();
+            services.AddMvc();
+            
             // Adds request processing for every type of your requests
             // All you need - is to define your grain type, request type and response type 
-            services.AddOrleansWebServerForRequest<WeatherRequest, WeatherResponse, IWeatherGrain>(Configuration);
+            services.AddOrleansWebServerForRequest<IntegralX2Request, IntegralX2Response, IX2IntegrationGrain>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,17 +38,11 @@ namespace OrleansWebServer
 
             app.UseRouting();
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orleans WebServer API V1"));
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

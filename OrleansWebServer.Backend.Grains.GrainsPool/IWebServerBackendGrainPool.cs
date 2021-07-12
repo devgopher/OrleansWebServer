@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Orleans;
+using System.Threading.Tasks;
 
 namespace OrleansWebServer.Backend.Grains.GrainsPool
 {
@@ -8,6 +9,6 @@ namespace OrleansWebServer.Backend.Grains.GrainsPool
 
     public interface IWebServerBackendGrainPool<TIn, TOut> : IWebServerBackendGrainPool
     {
-        public Task<TOut> Execute(TIn request);
+        public Task<TOut> Execute(TIn request, GrainCancellationToken cancellationToken = default);
     }
 }

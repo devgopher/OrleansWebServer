@@ -10,10 +10,10 @@ using OrleansStatisticsKeeper.Models;
 
 namespace OrleansStatisticsKeeper.Grains.ClientGrainsPool
 {
-    public class GrainsGetStatisticsPool<T> : GrainsPool<IGetStatisticsGrain<T>>, IGetStatisticsGrain<T>
+    public class GenericGrainsGetStatisticsPool<T> : GenericGrainsPool<IGetStatisticsGrain<T>>, IGetStatisticsGrain<T>
         where T : DataChunk
     {
-        public GrainsGetStatisticsPool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public GenericGrainsGetStatisticsPool(StatisticsClient client, int poolSize) : base(client, poolSize)
         {
         }
 

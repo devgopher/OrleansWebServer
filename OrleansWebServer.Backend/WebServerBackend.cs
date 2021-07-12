@@ -1,5 +1,4 @@
-﻿using AsyncLogging;
-using Orleans;
+﻿using Orleans;
 using OrleansStatisticsKeeper.Client;
 using OrleansWebServer.Backend.Exceptions;
 using OrleansWebServer.Backend.GrainPoolStorage;
@@ -7,6 +6,7 @@ using OrleansWebServer.Backend.Grains.GrainsPool;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using OrleansWebServer.Backend.Settings;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OrleansWebServer.Backend
@@ -18,11 +18,9 @@ namespace OrleansWebServer.Backend
         private readonly WebServerBackendSettings _settings;
         private readonly AsyncLogging.AsyncLogging _logger;
 
-        public WebServerBackend(WebServerBackendSettings settings,
-            AsyncLogging.AsyncLogging logger ) //: base(settings.SchedulerSettings)
+        public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
-            var clt = new ClientStartup();
-            _client = clt.StartClientWithRetriesSync();
+            _client = ClientStartup.Instance.Client; 
             _webExecutivePools = GrainPoolsCache.GetInstance();
             _settings = settings;
             _logger = logger;
@@ -54,21 +52,28 @@ namespace OrleansWebServer.Backend
         /// <typeparam name="TOut"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<TOut> SendRequest<TIn, TOut>(TIn request)
+        public async Task<TOut> SendRequest<TIn, TOut>(TIn request, CancellationToken cancellationToken = default)
         {
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
 
+            GrainCancellationTokenSource _tokenSource = new GrainCancellationTokenSource();
             if (!_webExecutivePools.ContainsType(typeof(TIn)))
                 throw new WebServerBackendException(
                     $"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : input type is NOT registered!");
 
             if (!(_webExecutivePools[typeof(TIn)] is IWebServerBackendGrainPool<TIn, TOut> pool))
-                throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " +
+                throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
-
-            var result = await pool.Execute(request);
+            if (cancellationToken != default)
+                cancellationToken.Register(async () =>
+                {
+                    await _tokenSource.Cancel();
+                });
+            
+            var result = await pool.Execute(request, _tokenSource.Token);
 
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} got result");
+            _tokenSource.Dispose();
             return result;
         }
 

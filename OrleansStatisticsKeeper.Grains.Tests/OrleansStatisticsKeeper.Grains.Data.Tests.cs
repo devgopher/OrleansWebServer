@@ -41,9 +41,9 @@ namespace OrleansStatisticsKeeper.Grains.Tests
 
             _mongoUtils = new MongoUtils(_oskSettings);
             _addStatisticsGrain = new MongoManageStatisticsGrain<TestModel>(_mongoUtils);
-            _getStatisticsGrain = new MongoGetStatisticsGrain<TestModel>(_mongoUtils, new NLogLogger());
+            _getStatisticsGrain = new MongoGetStatisticsGrain<TestModel>(_mongoUtils, new ConsoleLogger());
             _grainsContext = new GenericGrainsContext();
-            _logger = new NLogLogger();
+            _logger = new ConsoleLogger();
             _executiveGrain = new GenericExecutiveGrain(new MemoryAssemblyMembersCache(new MemoryAssemblyCache()), _logger);
             //var clt = new ClientStartup();
             //var client = await clt.StartClientWithRetries();

@@ -20,15 +20,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using OrleansWebServer.Grains;
 using OWSUtils;
+using System.Runtime.Loader;
 
 namespace OrleansStatisticsKeeper
 {
     public class Program
     {
+        private static IAsyncLogger _logger;
+
         public static Task Main(string[] args)
         {
             var oskSettings = new OskSettings();
             var siloSettings = new SiloSettings();
+            _logger = new NLogLogger();
+
+            _logger.Info("Starting SiloHost...");
 
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
@@ -50,7 +56,7 @@ namespace OrleansStatisticsKeeper
                         {
                             services.AddSingleton(oskSettings);
                             services.AddSingleton(siloSettings);
-                            services.AddScoped<IAsyncLogger, NLogLogger>();
+                            services.AddScoped<IAsyncLogger>(l => _logger);
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
                         })
@@ -77,6 +83,7 @@ namespace OrleansStatisticsKeeper
 
         private static Assembly[] GetLinkedAssemblies(SiloSettings siloSettings)
         {
+            _logger.Info("Adding linked assmeblies for grains ...");
             var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
             var basicDirectory = directoryInfo?.FullName;
             basicDirectory = directoryInfo != null ? directoryInfo.Parent?.Parent?.FullName : basicDirectory;
@@ -96,36 +103,53 @@ namespace OrleansStatisticsKeeper
             if (asmPaths == null) 
                 return asms.ToArray();
             
-            foreach (var asmPath in asmPaths)
+            foreach (var asmPath in asmPaths.Where(path => path.Contains("Grains") && !path.Contains("Interfaces")))
             {
                 try
                 {
-                    var asm = Assembly.LoadFrom(asmPath);
+                    var asm = AssemblyLoadContext.Default.LoadFromAssemblyPath(asmPath);
                     asms.Add(asm);
-                    Console.WriteLine($"Loaded assembly: {asmPath}!");
+                    _logger.Debug($"Loaded assembly: {asmPath}!");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Can't load assembly: {asmPath}, {ex.Message}!");
+                    _logger.Error($"Can't load assembly: {asmPath}, {ex.Message}!");
                 }
             }
+            _logger.Info("Adding linked assmeblies for grains finished");
 
             return asms.ToArray();
         }
 
         private static IApplicationPartManagerWithAssemblies AddParts(IApplicationPartManager parts, SiloSettings siloSettings)
         {
-            var sas = typeof(WeatherGrain).Assembly;
+            _logger.Info("Adding App Parts...");
+
             var results = parts
                 .AddApplicationPart(typeof(DataChunk).Assembly)
-                .AddApplicationPart(typeof(WeatherGrain).Assembly)
+                .AddApplicationPart(typeof(IX2IntegrationGrain).Assembly)
                 .WithCodeGeneration();
             
-           // results.AddApplicationPart(typeof(WeatherGrain).Assembly);
+            var linkedAsms = GetLinkedAssemblies(siloSettings);
+            foreach (var asm in linkedAsms)
+            {
+                _logger.Info($"Loading app part \"{asm.GetName()}\"");
+                try
+                {
+                    if (linkedAsms.Any(asm1 => asm1.GetName().Name == asm.GetName().Name && asm1.GetName().Version != asm.GetName().Version))
+                    {
+                        var existingAsms = linkedAsms.Where(asm1 => asm1.GetName().Name == asm.GetName().Name && asm1.GetName().Version != asm.GetName().Version);
+                        var lastVersionAsm = existingAsms.OrderByDescending(asm1 => asm1.GetName().Version).FirstOrDefault();
+                        if (lastVersionAsm != default)
+                            results.AddApplicationPart(lastVersionAsm).WithCodeGeneration();
+                    } else                    
+                        results.AddApplicationPart(asm).WithCodeGeneration();
 
-            //var linkedAsms = GetLinkedAssemblies(siloSettings);
-            //foreach (var asm in linkedAsms)
-            //    results.AddApplicationPart(asm).WithCodeGeneration();
+                } catch (Exception ex) {
+                    _logger.Error($"Error loading app part \"{asm.GetName()}\": {ex.Message}");
+                }
+            }
+            _logger.Info("App Parts loaded");
 
             return results;
         }

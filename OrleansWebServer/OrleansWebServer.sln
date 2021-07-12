@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Sil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Models", "..\OrleansStatisticsKeeper.Models\OrleansStatisticsKeeper.Models.csproj", "{A50FBA2F-3989-4548-9EED-9436612B649A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "..\Utils\Utils.csproj", "{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebServerUtils", "..\Utils\WebServerUtils.csproj", "{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLogging", "..\AsyncLogging\AsyncLogging.csproj", "{88862825-598E-4FE3-B8C7-B79F902A4051}"
 EndProject
@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Gra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Client", "..\OrleansStatisticsKeeper.Client\OrleansStatisticsKeeper.Client.csproj", "{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Grains.ClientGrainsPool", "..\..\OSKStatistics\OSK\OrleansStatisticsKeeper.Grains.ClientGrainsPool\OrleansStatisticsKeeper.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Grains.ClientGrainsPool", "..\OrleansStatisticsKeeper.Grains.ClientGrainsPool\OrleansStatisticsKeeper.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{C5520868-7962-40E4-88B8-F150ED226827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +98,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{89E2082F-C891-42AB-A1F2-24F3759846AC} = {BDF3494D-48D7-4923-8F43-E94F8B67F287}
 		{FC0EE7AE-D453-4F1F-989C-12184B6C39F7} = {BDF3494D-48D7-4923-8F43-E94F8B67F287}
+		{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D} = {C5520868-7962-40E4-88B8-F150ED226827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A5D0B91-FFFA-4432-BCCF-C63DE7734311}

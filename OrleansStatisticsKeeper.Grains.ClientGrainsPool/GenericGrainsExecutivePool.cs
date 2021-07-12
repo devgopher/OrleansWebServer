@@ -1,19 +1,19 @@
 ﻿using OrleansStatisticsKeeper.Client;
 using OrleansStatisticsKeeper.Grains.Interfaces;
+using OWSUtils.Client;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Utils.Client;
 
 namespace OrleansStatisticsKeeper.Grains.ClientGrainsPool
 {
     [Serializable]
-    public class GrainsExecutivePool : GrainsPool<IOskGrain>, IOskGrain
+    public class GenericGrainsExecutivePool : GenericGrainsPool<IOskGrain>, IOskGrain
     {
-        public GrainsExecutivePool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public GenericGrainsExecutivePool(StatisticsClient client, int poolSize) : base(client, poolSize)
         {
         }
 
@@ -105,6 +105,6 @@ namespace OrleansStatisticsKeeper.Grains.ClientGrainsPool
         /// <param name="poolSize"></param>
         /// <returns></returns>
         public override async Task Resize(int poolSize)
-            => throw new NotSupportedException($"{nameof(Resize)} isn't supported for {nameof(GrainsExecutivePool)}!");
+            => throw new NotSupportedException($"{nameof(Resize)} isn't supported for {nameof(GenericGrainsExecutivePool)}!");
     }
 }

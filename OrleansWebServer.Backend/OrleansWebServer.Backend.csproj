@@ -20,6 +20,6 @@
     <ProjectReference Include="..\OrleansStatisticsKeeper.Client\OrleansStatisticsKeeper.Client.csproj" />
     <ProjectReference Include="..\OrleansWebServer.Backend.Grains.GrainsPool\OrleansWebServer.Backend.Grains.GrainsPool.csproj" />
     <ProjectReference Include="..\OrleansWebServer.Backend.Grains.Interfaces\OrleansWebServer.Backend.Grains.Interfaces.csproj" />
-    <ProjectReference Include="..\Utils\Utils.csproj" />
+    <ProjectReference Include="..\Utils\WebServerUtils.csproj" />
   </ItemGroup>
 </Project>
