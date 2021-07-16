@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>OWS.Models</Product>
+    <Description>-</Description>
+    <PackageId>OWS.Models</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>-</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>OWS.Models</Company>
+    <Authors>OWS.Models</Authors>
+  </PropertyGroup>
+
+</Project>

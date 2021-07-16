@@ -7,7 +7,7 @@
     <PackageId>AsyncLogging</PackageId>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReleaseNotes>initial release</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>AsyncLogging</Company>
     <Authors>AsyncLogging</Authors>

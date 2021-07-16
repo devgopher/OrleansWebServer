@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Orleans;
-using OrleansStatisticsKeeper.Client;
+using OWS.Client;
 using OrleansWebServer.Backend.Grains.GrainsPool;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using OrleansWebServer.Backend.Settings;

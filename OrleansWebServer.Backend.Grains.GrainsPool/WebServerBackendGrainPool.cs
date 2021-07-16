@@ -1,8 +1,8 @@
 ﻿using Orleans;
-using OrleansStatisticsKeeper.Client;
+using OWS.Client;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using System.Threading.Tasks;
-using OrleansStatisticsKeeper.Grains.ClientGrainsPool;
+using OWS.Grains.ClientGrainsPool;
 
 namespace OrleansWebServer.Backend.Grains.GrainsPool
 {

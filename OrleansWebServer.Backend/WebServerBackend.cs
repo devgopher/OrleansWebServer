@@ -1,5 +1,5 @@
 ﻿using Orleans;
-using OrleansStatisticsKeeper.Client;
+using OWS.Client;
 using OrleansWebServer.Backend.Exceptions;
 using OrleansWebServer.Backend.GrainPoolStorage;
 using OrleansWebServer.Backend.Grains.GrainsPool;

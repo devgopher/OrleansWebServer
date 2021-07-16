@@ -1,5 +1,5 @@
 ﻿using Orleans;
-using OrleansStatisticsKeeper.Client;
+using OWS.Client;
 using OrleansWebServer.Backend.Settings;
 using System.Threading.Tasks;
 using OrleansWebServer.Backend.Grains.GrainsPool;
