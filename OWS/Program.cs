@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using OrleansWebServer.Grains;
 using OWSUtils;
 using System.Runtime.Loader;
+using McGuireV10.OrleansDistributedCache;
 
 namespace OWS
 {
@@ -59,6 +60,12 @@ namespace OWS
                             services.AddScoped<IAsyncLogger>(l => _logger);
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
+                            if (siloSettings.Caching == true)
+                                services.AddOrleansDistributedCache(opt =>
+                                {
+                                    opt.DefaultDelayDeactivation = TimeSpan.FromMinutes(5);
+                                    opt.PersistWhenSet = true;
+                                });
                         })
                         .Configure((Action<SchedulingOptions>)(options => options.AllowCallChainReentrancy = false))
                         .Configure((Action<ClusterOptions>)(options =>
@@ -74,7 +81,7 @@ namespace OWS
                             options.HostSelf = true;
                             options.CounterUpdateIntervalMs = 1000;
                         })
-                        .AddMemoryGrainStorage(name: "StatisticsGrainStorage")
+                        .AddMemoryGrainStorage(name: "OWSStorage")
                         .AddSimpleMessageStreamProvider("OSKProvider", c => c.OptimizeForImmutableData = true);                    
                 })
                 .ConfigureLogging(builder => builder.AddConsole())

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31423.177
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServerTest", "OrleansWebServerTest.csproj", "{89E2082F-C891-42AB-A1F2-24F3759846AC}"
 EndProject
@@ -32,6 +32,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Grains.ClientGrainsPool", "..\OWS.Grains.ClientGrainsPool\OWS.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{C5520868-7962-40E4-88B8-F150ED226827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Services.Caching", "..\OWS.Services.Caching\OWS.Services.Caching.csproj", "{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Backend.Grains.Models", "..\OWS.Backend.Grains.Models\OWS.Backend.Grains.Models.csproj", "{1E01D278-6847-4F8F-8064-F433BD91E0AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,14 @@ Global
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
