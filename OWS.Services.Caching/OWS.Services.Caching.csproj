@@ -5,17 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.4.2" />
+    <PackageReference Include="McGuireV10.OrleansDistributedCache" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OWS.Backend.Grains.Models\OWS.Backend.Grains.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Orleans.Core.Abstractions">
-      <HintPath>..\OWS.Client\bin\Debug\netcoreapp3.1\Orleans.Core.Abstractions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

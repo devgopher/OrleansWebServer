@@ -8,6 +8,7 @@ using OWS.Client;
 using OrleansWebServer.Backend.Grains.GrainsPool;
 using OrleansWebServer.Backend.Grains.Interfaces;
 using OrleansWebServer.Backend.Settings;
+using OWS.Backend.Grains.Models;
 
 namespace OrleansWebServer.Backend.Extensions
 {
@@ -29,6 +30,8 @@ namespace OrleansWebServer.Backend.Extensions
 
         public static void AddOrleansWebServerForRequest<TIn, TOut, TGrain>(this IServiceCollection services, IConfiguration config)
             where TGrain : class, IWebServerBackendGrain<TIn, TOut>, IGrainWithGuidKey
+            where TIn : OWSRequest
+            where TOut : OWSResponse
         {
             services.AddOrleansWebServerForGrains(config);
             var provider = services.BuildServiceProvider();

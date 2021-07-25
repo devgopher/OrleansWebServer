@@ -8,6 +8,7 @@ using OrleansWebServer.Backend.Settings;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using OWS.Backend.Grains.Models;
 
 namespace OrleansWebServer.Backend
 {
@@ -35,6 +36,8 @@ namespace OrleansWebServer.Backend
         /// <returns></returns>
         public void RegisterRequest<TGrain, TIn, TOut>()
             where TGrain : class, IWebServerBackendGrain<TIn, TOut>, IGrainWithGuidKey
+            where TIn : OWSRequest
+            where TOut : OWSResponse
         {
             _logger.Info($"{nameof(RegisterRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
             if (_webExecutivePools.ContainsType(typeof(TIn)))
@@ -53,6 +56,8 @@ namespace OrleansWebServer.Backend
         /// <param name="request"></param>
         /// <returns></returns>
         public async Task<TOut> SendRequest<TIn, TOut>(TIn request, CancellationToken cancellationToken = default)
+            where TIn : OWSRequest
+            where TOut : OWSResponse
         {
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
 
