@@ -10,8 +10,8 @@ namespace OrleansWebServer.Backend.ControllerBase
 {
     public class WebServerBackendControllerBase<TGrain, IN, OUT>
         where  TGrain : class, IGrainWithGuidKey, IWebServerBackendGrain<IN,OUT>
-        where IN : OWSRequest
-        where OUT : OWSResponse
+        where OUT: OWSResponse
+        where IN: OWSRequest
     {
         private readonly WebServerBackendGrainPool<TGrain, IN , OUT> _grainPool;
 

@@ -57,7 +57,7 @@ namespace OrleansWebServer.Backend
         /// <returns></returns>
         public async Task<TOut> SendRequest<TIn, TOut>(TIn request, CancellationToken cancellationToken = default)
             where TIn : OWSRequest
-            where TOut : OWSResponse
+            where TOut: OWSResponse
         {
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name}: started...");
 
