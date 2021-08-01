@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: pwds
       run: pwd
+    - name: ls
+      run: ls
     - name: Restore dependencies
       run: dotnet restore ..\..\OrleansWebServer\OrleansWebServer.sln
     - name: Build
