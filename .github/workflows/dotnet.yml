@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: cd
       run: cd OrleansWebServer
+    - name: ls
+      run: ls
     - name: Restore dependencies
       run: dotnet restore OrleansWebServer.sln
     - name: Build
