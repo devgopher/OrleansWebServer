@@ -3,7 +3,6 @@ using Orleans.Streams;
 using OWS.Grains.Interfaces;
 using OWS.Grains.StreamEvents;
 using System.Threading.Tasks;
-using OWS.Grains.Models;
 using OWS.Models;
 
 namespace OWS.Grains.Grains

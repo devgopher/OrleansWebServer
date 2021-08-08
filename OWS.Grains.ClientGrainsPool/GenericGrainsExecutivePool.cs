@@ -13,7 +13,7 @@ namespace OWS.Grains.ClientGrainsPool
     [Serializable]
     public class GenericGrainsExecutivePool : GenericGrainsPool<IOskGrain>, IOskGrain
     {
-        public GenericGrainsExecutivePool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public GenericGrainsExecutivePool(OrleansGrainsInnerClient client, int poolSize) : base(client, poolSize)
         {
         }
 

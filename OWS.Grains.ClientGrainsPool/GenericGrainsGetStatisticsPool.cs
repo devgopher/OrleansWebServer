@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using OWS.Grains.Models;
 using OWS.Models;
 
 namespace OWS.Grains.ClientGrainsPool
@@ -13,7 +12,7 @@ namespace OWS.Grains.ClientGrainsPool
     public class GenericGrainsGetStatisticsPool<T> : GenericGrainsPool<IGetStatisticsGrain<T>>, IGetStatisticsGrain<T>
         where T : DataChunk
     {
-        public GenericGrainsGetStatisticsPool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public GenericGrainsGetStatisticsPool(OrleansGrainsInnerClient client, int poolSize) : base(client, poolSize)
         {
         }
 

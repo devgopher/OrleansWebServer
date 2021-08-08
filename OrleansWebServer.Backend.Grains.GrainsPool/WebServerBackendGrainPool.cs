@@ -12,7 +12,7 @@ namespace OrleansWebServer.Backend.Grains.GrainsPool
         where TOut : OWSResponse
         where TGrain : class, IWebServerBackendGrain<TIn, TOut>, IGrainWithGuidKey
     {
-        public WebServerBackendGrainPool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public WebServerBackendGrainPool(OrleansGrainsInnerClient client, int poolSize) : base(client, poolSize)
         {
         }
 
@@ -21,8 +21,6 @@ namespace OrleansWebServer.Backend.Grains.GrainsPool
         public async Task<TOut> Execute(TIn request, GrainCancellationToken cancellationToken = default)
         {
             var grain = await GetGrain();
-            //while (grain.IsBusy)
-            //    grain = await GetGrain();
 
             return await grain.Execute(request, cancellationToken);
         }

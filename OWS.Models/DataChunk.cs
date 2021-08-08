@@ -1,8 +1,7 @@
 ﻿using System;
 using OWS.Models.Attributes;
 
-// ReSharper disable once CheckNamespace
-namespace OWS.Grains.Models
+namespace OWS.Models
 {
     public class DataChunk
     {

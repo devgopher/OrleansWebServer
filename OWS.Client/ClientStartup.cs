@@ -24,9 +24,9 @@ namespace OWS.Client
         private readonly SiloSettings _siloSettings = new SiloSettings();
         private readonly OskSettings _oskSettings = new OskSettings();
         private static ClientStartup _instance = default;
-        private static StatisticsClient _statisticsClient; 
+        private static OrleansGrainsInnerClient _statisticsClient; 
         private IClusterClient _clusterClient;
-        int _attempt = 0;
+        private int _attempt = 0;
 
         public static ClientStartup Instance => _instance ??= new ClientStartup();
 
@@ -44,9 +44,9 @@ namespace OWS.Client
             _statisticsClient = task.Result;
         }
 
-        public StatisticsClient Client => _statisticsClient;
+        public OrleansGrainsInnerClient Client => _statisticsClient;
 
-        public async Task<StatisticsClient> StartClientWithRetries(bool siloDiscovery)
+        public async Task<OrleansGrainsInnerClient> StartClientWithRetries(bool siloDiscovery)
         {
             _attempt = 0;
             _siloSettings.SiloAddresses ??= new List<string>();
@@ -74,7 +74,7 @@ namespace OWS.Client
             await _clusterClient.Connect(RetryFilter);
             Console.WriteLine("Client successfully connect to silo host");
 
-            return new StatisticsClient(_clusterClient, new AsyncLogging.ConsoleLogger());
+            return new OrleansGrainsInnerClient(_clusterClient, new AsyncLogging.ConsoleLogger());
         }
 
         private async Task<bool> RetryFilter(Exception exception)

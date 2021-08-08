@@ -3,7 +3,6 @@ using OWS.Grains.Database;
 using OWS.Models.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OWS.Grains.Models;
 using OWS.Models;
 
 namespace OWS.Grains.Utils

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoUtils = OWS.Grains.Utils.MongoUtils;
 using System.Linq;
-using OWS.Grains.Models;
 using OWS.Models;
 
 namespace OWS.Grains.Grains

@@ -12,10 +12,13 @@ using OWS.Backend.Grains.Models;
 
 namespace OrleansWebServer.Backend
 {
+    /// <summary>
+    /// This class allows to execute requests using grains
+    /// </summary>
     public class WebServerBackend : IDisposable
     {
         private readonly GrainPoolsCache _webExecutivePools;
-        private readonly StatisticsClient _client;
+        private readonly OrleansGrainsInnerClient _client;
         private readonly WebServerBackendSettings _settings;
         private readonly AsyncLogging.AsyncLogging _logger;
 
@@ -70,10 +73,7 @@ namespace OrleansWebServer.Backend
                 throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
             if (cancellationToken != default)
-                cancellationToken.Register(async () =>
-                {
-                    await _tokenSource.Cancel();
-                });
+                cancellationToken.Register(async () => await _tokenSource.Cancel());
             
             var result = await pool.Execute(request, _tokenSource.Token);
 

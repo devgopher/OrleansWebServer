@@ -3,7 +3,6 @@ using OWS.Grains.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OWS.Grains.Models;
 using OWS.Models;
 
 namespace OWS.Grains.ClientGrainsPool
@@ -11,7 +10,7 @@ namespace OWS.Grains.ClientGrainsPool
     public class GenericGrainsManageStatisticsPool<T> : GenericGrainsPool<IManageStatisticsGrain<T>>, IManageStatisticsGrain<T>
         where T : DataChunk
     {
-        public GenericGrainsManageStatisticsPool(StatisticsClient client, int poolSize) : base(client, poolSize)
+        public GenericGrainsManageStatisticsPool(OrleansGrainsInnerClient client, int poolSize) : base(client, poolSize)
         {
         }
 

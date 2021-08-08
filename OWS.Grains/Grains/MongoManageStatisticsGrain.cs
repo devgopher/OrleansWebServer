@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OWS.Grains.Models;
 using OWS.Models;
 using MongoUtils = OWS.Grains.Utils.MongoUtils;
 

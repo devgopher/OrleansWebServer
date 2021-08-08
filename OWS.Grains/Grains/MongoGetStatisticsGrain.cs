@@ -8,7 +8,6 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Orleans;
 using OWS.Grains.Interfaces;
-using OWS.Grains.Models;
 using OWS.Models;
 using MongoUtils = OWS.Grains.Utils.MongoUtils;
 

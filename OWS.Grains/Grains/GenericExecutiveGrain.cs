@@ -189,31 +189,6 @@ namespace OWS.Grains.Grains
 
             _logger.Trace($"{GetType().Name}.{nameof(ExecuteWithContext)}() instance created");
 
-            //var refs = type.Assembly.GetReferencedAssemblies();
-            //foreach (var @ref in refs)
-            //{
-            //    if (AssemblyUtils.IsSystemAssembly(@ref) || AssemblyUtils.IsOskAssembly(@ref))
-            //        continue;
-            //    var asmDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //    var asm = Assembly.LoadFile(Path.Combine(asmDirectory, $"{@ref.Name}.dll"));
-            //    var types = asm.GetTypes();
-            //    foreach (var tp in types)
-            //    {
-            //        try
-            //        {
-            //            if (tp.IsAbstract)
-            //                continue;
-            //            var tobj = Activator.CreateInstance(tp);
-            //            if (tobj != default)
-            //                break;
-            //        }
-            //        catch (Exception)
-            //        {
-            //            // ignore
-            //        }
-            //    }
-            //}
-
             var obj = Activator.CreateInstance(type, context);
             var ret = method.Invoke(obj, args);
             _logger.Trace($"{GetType().Name}.{nameof(ExecuteWithContext)}() method invoked and we've got a result");

@@ -2,7 +2,6 @@
 using OWS.Grains.Database;
 using System.Linq;
 using System.Threading.Tasks;
-using OWS.Grains.Models;
 using OWS.Models;
 using OWS.Models.Settings;
 

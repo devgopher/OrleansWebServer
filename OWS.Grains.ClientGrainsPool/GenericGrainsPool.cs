@@ -11,10 +11,10 @@ namespace OWS.Grains.ClientGrainsPool
     public class GenericGrainsPool<T> where T : class, IGrainWithGuidKey
     {
         protected readonly ConcurrentBag<T> _grains;
-        private readonly StatisticsClient _client;
+        private readonly OrleansGrainsInnerClient _client;
         private readonly Random _rand = new Random(DateTime.Now.Millisecond);
 
-        public GenericGrainsPool(StatisticsClient client, int poolSize)
+        public GenericGrainsPool(OrleansGrainsInnerClient client, int poolSize)
         {
             _grains = new ConcurrentBag<T>();
             _client = client;

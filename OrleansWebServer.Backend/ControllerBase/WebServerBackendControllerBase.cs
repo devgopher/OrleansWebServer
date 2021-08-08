@@ -15,7 +15,7 @@ namespace OrleansWebServer.Backend.ControllerBase
     {
         private readonly WebServerBackendGrainPool<TGrain, IN , OUT> _grainPool;
 
-        public WebServerBackendControllerBase(WebServerBackendSettings settings, StatisticsClient client)
+        public WebServerBackendControllerBase(WebServerBackendSettings settings, OrleansGrainsInnerClient client)
         {
         }
 

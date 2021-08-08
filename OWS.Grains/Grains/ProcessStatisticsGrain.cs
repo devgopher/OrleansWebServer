@@ -1,6 +1,6 @@
 ﻿using Orleans;
 using OWS.Grains.Interfaces;
-using OWS.Grains.Models;
+using OWS.Models;
 using System;
 using System.Threading.Tasks;
 

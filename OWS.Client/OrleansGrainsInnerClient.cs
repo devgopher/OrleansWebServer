@@ -1,17 +1,20 @@
 ﻿using AsyncLogging;
 using Orleans;
 using OWS.Grains.Interfaces;
-using OWS.Grains.Models;
+using OWS.Models;
 using System;
 
 namespace OWS.Client
 {
-    public class StatisticsClient : IDisposable
+    /// <summary>
+    /// This client connects a Web Server backend to Grains 
+    /// </summary>
+    public class OrleansGrainsInnerClient : IDisposable
     {
         private readonly IClusterClient _client;
-        private readonly IAsyncLogger _logger;
+        protected readonly IAsyncLogger _logger;
 
-        public StatisticsClient(IClusterClient client, IAsyncLogger logger)
+        public OrleansGrainsInnerClient(IClusterClient client, IAsyncLogger logger)
         {
             _client = client;
             _logger = logger;

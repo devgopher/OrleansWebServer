@@ -9,6 +9,9 @@ using IPAddressCollection = System.Net.IPAddressCollection;
 
 namespace OWS.Client.SiloDiscovery
 {
+    /// <summary>
+    /// Silo addresses discovery tool
+    /// </summary>
     public static class Discovery
     {
         public static List<string> ScanAddresses(int port)
