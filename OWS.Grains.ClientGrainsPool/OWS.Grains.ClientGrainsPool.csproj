@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>OWS.Grains.ClientGrainsPool</Product>
+    <Description>-</Description>
+    <PackageId>OWS.Grains.ClientGrainsPool</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>-</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>OWS.Grains.ClientGrainsPool</Company>
+    <Authors>OWS.Grains.ClientGrainsPool</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OWS.Client\OWS.Client.csproj" />
+    <ProjectReference Include="..\OWS.Grains\OWS.Grains.csproj" />
+  </ItemGroup>
+
+</Project>

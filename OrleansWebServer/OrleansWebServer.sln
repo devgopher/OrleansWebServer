@@ -1,37 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30803.129
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer", "OrleansWebServer.csproj", "{89E2082F-C891-42AB-A1F2-24F3759846AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServerTest", "OrleansWebServerTest.csproj", "{89E2082F-C891-42AB-A1F2-24F3759846AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer.Backend", "..\OrleansWebServer.Backend\OrleansWebServer.Backend.csproj", "{959C4B3C-6EE5-46B7-920D-6F4B775C2B70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Backend", "..\OrleansWebServer.Backend\OWS.Backend.csproj", "{959C4B3C-6EE5-46B7-920D-6F4B775C2B70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer.Backend.Grains", "..\OrleansWebServer.Backend.Grains\OrleansWebServer.Backend.Grains.csproj", "{F45734FF-09A1-451B-B9C4-02CCA9C63088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Backend.Grains", "..\OrleansWebServer.Backend.Grains\OWS.Backend.Grains.csproj", "{F45734FF-09A1-451B-B9C4-02CCA9C63088}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer.Backend.Grains.Interfaces", "..\OrleansWebServer.Backend.Grains.Interfaces\OrleansWebServer.Backend.Grains.Interfaces.csproj", "{45782294-152E-4F7E-ABF2-FE86DE35F34F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Backend.Grains.Interfaces", "..\OrleansWebServer.Backend.Grains.Interfaces\OWS.Backend.Grains.Interfaces.csproj", "{45782294-152E-4F7E-ABF2-FE86DE35F34F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer.Backend.Grains.GrainsPool", "..\OrleansWebServer.Backend.Grains.GrainsPool\OrleansWebServer.Backend.Grains.GrainsPool.csproj", "{B5E430ED-A930-4426-951B-ACDFAA417333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Backend.Grains.GrainsPool", "..\OrleansWebServer.Backend.Grains.GrainsPool\OWS.Backend.Grains.GrainsPool.csproj", "{B5E430ED-A930-4426-951B-ACDFAA417333}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{BDF3494D-48D7-4923-8F43-E94F8B67F287}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServer.Grains", "..\OrleansWebServer.Grains\OrleansWebServer.Grains.csproj", "{FC0EE7AE-D453-4F1F-989C-12184B6C39F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServerTest.Grains", "..\OrleansWebServer.Grains\OrleansWebServerTest.Grains.csproj", "{FC0EE7AE-D453-4F1F-989C-12184B6C39F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.SiloHost", "..\OrleansStatisticsKeeper\OrleansStatisticsKeeper.SiloHost.csproj", "{86E5700E-33A2-4F18-BDFD-94DD75C60A45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.SiloHost", "..\OWS\OWS.SiloHost.csproj", "{86E5700E-33A2-4F18-BDFD-94DD75C60A45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Models", "..\OrleansStatisticsKeeper.Models\OrleansStatisticsKeeper.Models.csproj", "{A50FBA2F-3989-4548-9EED-9436612B649A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Models", "..\OWS.Models\OWS.Models.csproj", "{A50FBA2F-3989-4548-9EED-9436612B649A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebServerUtils", "..\Utils\WebServerUtils.csproj", "{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLogging", "..\AsyncLogging\AsyncLogging.csproj", "{88862825-598E-4FE3-B8C7-B79F902A4051}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Grains", "..\OrleansStatisticsKeeper.Grains\OrleansStatisticsKeeper.Grains.csproj", "{B107BE77-0D23-4201-BFC9-2A8037F10C7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Grains", "..\OWS.Grains\OWS.Grains.csproj", "{B107BE77-0D23-4201-BFC9-2A8037F10C7E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Client", "..\OrleansStatisticsKeeper.Client\OrleansStatisticsKeeper.Client.csproj", "{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Client", "..\OWS.Client\OWS.Client.csproj", "{2B66C702-C9D9-4369-9DC9-4E656FC4C37C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansStatisticsKeeper.Grains.ClientGrainsPool", "..\OrleansStatisticsKeeper.Grains.ClientGrainsPool\OrleansStatisticsKeeper.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Grains.ClientGrainsPool", "..\OWS.Grains.ClientGrainsPool\OWS.Grains.ClientGrainsPool.csproj", "{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{C5520868-7962-40E4-88B8-F150ED226827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Services.Caching", "..\OWS.Services.Caching\OWS.Services.Caching.csproj", "{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Backend.Grains.Models", "..\OWS.Backend.Grains.Models\OWS.Backend.Grains.Models.csproj", "{1E01D278-6847-4F8F-8064-F433BD91E0AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,14 @@ Global
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38DBEC0-27D5-4CEE-9532-E8040DA8AEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

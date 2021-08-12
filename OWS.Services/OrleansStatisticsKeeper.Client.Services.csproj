@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>OWS.Client.Services</Product>
+    <Description>OSK client, that supports different tools</Description>
+    <PackageId>OWS.Client.Services</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>-</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>OWS.Client.Services</Company>
+    <Authors>OWS.Client.Services</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.20" />
+    <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.4.2" />
+    <PackageReference Include="Polly" Version="7.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OWS.Client\OWS.Client.csproj" />
+    <ProjectReference Include="..\OWS.Grains\OWS.Grains.csproj" />
+  </ItemGroup>
+
+</Project>

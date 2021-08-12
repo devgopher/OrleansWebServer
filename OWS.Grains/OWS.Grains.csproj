@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Product>OWS.Grains</Product>
+    <Description>-</Description>
+    <PackageId>OWS.Grains</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageReleaseNotes>-</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>OWS.Grains</Company>
+    <Authors>OWS.Grains</Authors>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ceras" Version="4.1.7" />
+    <PackageReference Include="ClickHouse.Net" Version="0.5.1" />
+    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="DapperExtensions" Version="1.6.3" />
+    <PackageReference Include="EntityFrameworkCore.BootKit" Version="2.6.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.4.2" />
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.4.2" />
+    <PackageReference Include="MongoDB.Bson" Version="2.12.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.12.2" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.4.2" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Orleans.TelemetryConsumers.ECS" Version="1.0.0" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.3" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.113" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AsyncLogging\AsyncLogging.csproj" />
+    <ProjectReference Include="..\OWS.Models\OWS.Models.csproj" />
+    <ProjectReference Include="..\Utils\WebServerUtils.csproj" />
+  </ItemGroup>
+
+</Project>
