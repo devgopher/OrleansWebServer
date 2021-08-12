@@ -21,7 +21,7 @@ namespace OrleansWebServer.Backend
         public WebServerBackend(WebServerBackendSettings settings, AsyncLogging.AsyncLogging logger)
         {
             _client = ClientStartup.Instance.Client; 
-            _webExecutivePools = GrainPoolsCache.GetInstance();
+            _webExecutivePools = GrainPoolsCache.GetInstance(logger);
             _settings = settings;
             _logger = logger;
         }
@@ -65,15 +65,13 @@ namespace OrleansWebServer.Backend
                 throw new WebServerBackendException($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} : " + 
                                                     $"grain doesn't accords to {typeof(IWebServerBackendGrainPool<TIn, TOut>)}!");
             if (cancellationToken != default)
-                cancellationToken.Register(async () =>
-                {
-                    await _tokenSource.Cancel();
-                });
+                cancellationToken.Register(async () => await _tokenSource.Cancel());
             
             var result = await pool.Execute(request, _tokenSource.Token);
 
             _logger.Info($"{nameof(SendRequest)} for {typeof(TIn).Name} with output of type: {typeof(TOut).Name} got result");
             _tokenSource.Dispose();
+
             return result;
         }
 

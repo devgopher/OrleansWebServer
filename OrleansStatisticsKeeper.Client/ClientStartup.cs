@@ -67,6 +67,12 @@ namespace OrleansStatisticsKeeper.Client
                     options.ClusterId = _oskSettings.ClusterId;
                     options.ServiceId = _oskSettings.ServiceId;
                 })
+                .Configure<ConnectionOptions>(options =>
+                {
+                    options.OpenConnectionTimeout = TimeSpan.FromMinutes(1);
+                    options.ProtocolVersion = NetworkProtocolVersion.Version2;
+                    options.ConnectionRetryDelay = TimeSpan.FromMilliseconds(10);
+                })
                 .ConfigureLogging(logging => logging.AddConsole())
                 .AddSimpleMessageStreamProvider("OSKProvider")
                 .Build();

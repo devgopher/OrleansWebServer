@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using OrleansWebServer.Grains;
 using OWSUtils;
 using System.Runtime.Loader;
+using OrleansDashboard;
 
 namespace OrleansStatisticsKeeper
 {
@@ -54,13 +55,15 @@ namespace OrleansStatisticsKeeper
                     builder.UseLocalhostClustering()
                         .ConfigureServices(services =>
                         {
-                            services.AddSingleton(oskSettings);
-                            services.AddSingleton(siloSettings);
+                            services.Configure<OskSettings>(configuration.GetSection(nameof(OskSettings)));
+                            services.Configure<SiloSettings>(configuration.GetSection(nameof(SiloSettings)));
                             services.AddScoped<IAsyncLogger>(l => _logger);
                             services.AddSingleton<IAssemblyCache, MemoryAssemblyCache>();
                             services.AddSingleton<IAssemblyMembersCache, MemoryAssemblyMembersCache>();
                         })
                         .Configure((Action<SchedulingOptions>)(options => options.AllowCallChainReentrancy = false))
+                        .Configure((Action<ConnectionOptions>)(options => options.OpenConnectionTimeout = TimeSpan.FromMinutes(1)))
+                        .Configure<DashboardOptions>(configuration.GetSection(nameof(DashboardOptions)))
                         .Configure((Action<ClusterOptions>)(options =>
                         {
                             options.ClusterId = oskSettings.ClusterId;
@@ -95,7 +98,8 @@ namespace OrleansStatisticsKeeper
             {
                 var additionalGrainsPaths =
                     Directory.GetFiles(additionalGrains, "*Grains.dll", SearchOption.AllDirectories);
-                Console.WriteLine($"Additional grains: {string.Join(',', additionalGrainsPaths)}");
+                
+                _logger.Info($"Additional grains: {string.Join(',', additionalGrainsPaths)}");
                 asmPaths.AddRange(additionalGrainsPaths);
             }
 

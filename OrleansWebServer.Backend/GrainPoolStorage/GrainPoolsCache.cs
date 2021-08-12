@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AsyncLogging;
 using OrleansWebServer.Backend.Grains.GrainsPool;
 
 namespace OrleansWebServer.Backend.GrainPoolStorage
@@ -11,19 +12,21 @@ namespace OrleansWebServer.Backend.GrainPoolStorage
 
         private static GrainPoolsCache _instance = default;
         private static readonly object SyncObj = new object();
+        private static IAsyncLogger _logger;
 
-        private GrainPoolsCache()
+        private GrainPoolsCache(IAsyncLogger logger)
         {
-            Console.WriteLine($"{nameof(GrainPoolsCache)} constructor...");
+            _logger = logger;
+            _logger.Debug($"{nameof(GrainPoolsCache)} started...");
         }
 
-        public static GrainPoolsCache GetInstance()
+        public static GrainPoolsCache GetInstance(IAsyncLogger logger)
         {
             if (_instance != default) 
                 return _instance;
             lock (SyncObj)
             {
-                _instance ??= new GrainPoolsCache();
+                _instance ??= new GrainPoolsCache(logger);
             }
 
             return _instance;
