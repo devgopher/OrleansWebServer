@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Docker.Registry.DotNet" Version="1.1.15" />
+    <PackageReference Include="Ductus.FluentDocker" Version="2.10.7" />
+  </ItemGroup>
+
+</Project>

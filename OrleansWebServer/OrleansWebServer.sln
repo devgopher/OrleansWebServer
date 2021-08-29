@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansWebServerTest", "OrleansWebServerTest.csproj", "{89E2082F-C891-42AB-A1F2-24F3759846AC}"
 EndProject
@@ -33,9 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Grains.ClientGrainsPool
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{C5520868-7962-40E4-88B8-F150ED226827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Services.Caching", "..\OWS.Services.Caching\OWS.Services.Caching.csproj", "{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Services.Caching", "..\OWS.Services.Caching\OWS.Services.Caching.csproj", "{1396C1E7-8CC3-4339-AD9B-6E8AFB21FFCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OWS.Backend.Grains.Models", "..\OWS.Backend.Grains.Models\OWS.Backend.Grains.Models.csproj", "{1E01D278-6847-4F8F-8064-F433BD91E0AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OWS.Backend.Grains.Models", "..\OWS.Backend.Grains.Models\OWS.Backend.Grains.Models.csproj", "{1E01D278-6847-4F8F-8064-F433BD91E0AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker.Integration", "Docker.Integration", "{71B828B7-D82D-47BC-8736-08A859521DF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "..\Runner\Runner.csproj", "{6ED0CA64-CB3C-4365-8342-3725C8114EAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +107,10 @@ Global
 		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E01D278-6847-4F8F-8064-F433BD91E0AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED0CA64-CB3C-4365-8342-3725C8114EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED0CA64-CB3C-4365-8342-3725C8114EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED0CA64-CB3C-4365-8342-3725C8114EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED0CA64-CB3C-4365-8342-3725C8114EAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +119,7 @@ Global
 		{89E2082F-C891-42AB-A1F2-24F3759846AC} = {BDF3494D-48D7-4923-8F43-E94F8B67F287}
 		{FC0EE7AE-D453-4F1F-989C-12184B6C39F7} = {BDF3494D-48D7-4923-8F43-E94F8B67F287}
 		{3E422A95-24AC-41B4-AE5D-2A7C3AA1168D} = {C5520868-7962-40E4-88B8-F150ED226827}
+		{6ED0CA64-CB3C-4365-8342-3725C8114EAD} = {71B828B7-D82D-47BC-8736-08A859521DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A5D0B91-FFFA-4432-BCCF-C63DE7734311}
